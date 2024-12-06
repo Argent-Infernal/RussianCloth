@@ -1,0 +1,26 @@
+.mainBlock {
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+
+    .footer{
+        @apply flex items-center justify-between gap-5;
+    }
+
+    p {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        >.cart {
+            @apply flex flex-row justify-between items-center mb-5 gap-5;
+
+
+        }
+    }
+
+}

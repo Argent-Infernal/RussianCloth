@@ -1,0 +1,23 @@
+.mainBlock {
+    @apply mt-10 mx-auto text-center flex flex-col items-center border-b;
+
+    >p{
+        @apply text-2xl my-10 max-w-[800px] text-justify;
+    }
+
+    >.textBlock {
+        @apply items-center text-center p-5 rounded-3xl;
+        background-color: var(--primary-color);
+        >h1 {
+            @apply items-center text-center text-2xl font-extrabold text-gray-50;
+            >span {
+                text-transform: uppercase; /* Преобразует текст в верхний регистр */
+                background-image: linear-gradient(to right, white 33%, blue 33%, blue 66%, red 66%);
+                -webkit-background-clip: text; /* Для поддержки в WebKit-браузерах */
+                color: transparent; /* Скрывает оригинальный цвет текста */
+                background-clip: text; /* Для остальных браузеров */
+                font-size: 2rem;
+            } 
+        }
+    }
+}

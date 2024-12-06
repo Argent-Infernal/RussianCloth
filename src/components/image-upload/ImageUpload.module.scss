@@ -1,0 +1,17 @@
+.image_container {
+    @apply grid grid-cols-5 gap-5;
+
+    >.image_wrapper {
+        @apply relative w-[150px] h-[150px] rounded-md overflow-hidden border-2;
+
+        > img {
+            @apply object-cover size-full;
+        }
+    }
+}
+
+.upload {
+    >svg {
+        @apply size-4 mr-2;
+    }
+}

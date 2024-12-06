@@ -1,0 +1,13 @@
+.header {
+    @apply p-2 gap-x-4 h-full flex items-center justify-around border-b;
+
+    background-color: var(--foreground);
+
+    >.navigation {
+        @apply items-center gap-x-2 flex;
+    }
+
+    >.userNavigation {
+        @apply items-center gap-x-2 flex;
+    }
+}

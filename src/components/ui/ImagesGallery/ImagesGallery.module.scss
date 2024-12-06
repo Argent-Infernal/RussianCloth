@@ -1,0 +1,34 @@
+.imagesGallery {
+    @apply flex flex-col items-center;
+
+    >.mainImage {
+        > img {
+            width: 200px; /* Установите нужную ширину */
+            height: auto; 
+        }
+    }
+    
+    .thumbnails {
+        @apply flex justify-center mt-3;
+
+        > img {
+            width: 50px; /* Миниатюры */
+            height: auto;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        >img.active {
+            border: 2px solid blue; /* Подсветка активного изображения */
+        }
+    }
+
+    >.buttons {
+        @apply items-center;
+
+        > button {
+            margin: 10px;
+            cursor: pointer;
+        } 
+    }
+}
