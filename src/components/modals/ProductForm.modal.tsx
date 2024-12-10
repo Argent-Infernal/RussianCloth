@@ -41,7 +41,7 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({product}) => {
 
     const handleSubmit:SubmitHandler<IProductInput> = data => {
         data.price = Number(data.price)
-        console.log('da')
+
         if (product) updateProduct(data)
         else createProduct(data)
     };
@@ -141,7 +141,8 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({product}) => {
                                     <FormItem className="mt-4">
                                         <FormLabel>Изображения</FormLabel>
                                         <FormControl>
-                                            <ImageUpload 
+                                            <ImageUpload
+                                                multiple={true}
                                                 isDisabled={isLoadingCreate || isLoadingUpdate}
                                                 onChange={field.onChange}
                                                 value={field.value}

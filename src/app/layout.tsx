@@ -30,7 +30,9 @@ export default function RootLayout({
 		<html lang='ru'>
 			<body>
                 <Providers>
-                    {children}
+                    <div id='root'>
+                        {children}  
+                    </div>
                 </Providers>
             </body>
 		</html>

@@ -9,10 +9,12 @@ interface ImageUploadProps {
     isDisabled: boolean
     onChange: (value: string[]) => void
     value: string[]
+    multiple: boolean
+    folder?: string
 }
 
-export function ImageUpload({isDisabled, onChange, value}:ImageUploadProps) {
-    const {handleButtonClick, isUploading, fileInputRef, handleFileChange} = useUpload(onChange)
+export function ImageUpload({isDisabled, onChange, value, multiple, folder}:ImageUploadProps) {
+    const {handleButtonClick, isUploading, fileInputRef, handleFileChange} = useUpload({onChange, folder})
     return (
         <div>
             <div className={styles.image_container}>
@@ -36,7 +38,7 @@ export function ImageUpload({isDisabled, onChange, value}:ImageUploadProps) {
                 Загрузить картинку
             </Button>
 
-            <input type='file' multiple className='hidden' ref={fileInputRef} onChange={handleFileChange} disabled={isDisabled} />
+            <input type='file' multiple={multiple} className='hidden' ref={fileInputRef} onChange={handleFileChange} disabled={isDisabled} />
         </div>
     )
 }

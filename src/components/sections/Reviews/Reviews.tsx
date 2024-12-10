@@ -20,7 +20,8 @@ export default function Reviews() {
         <div ref={sectionRefs.reviewsSection} className={styles.mainBlock}>
             <Title className='mb-5' title='Отзывы'/>
             <div className={styles.reviews} >
-                <Carousel
+                <p>Отзывов нет</p>
+                {/* <Carousel
                     opts={{
                         align: "center",
                     }}
@@ -41,7 +42,7 @@ export default function Reviews() {
                     </CarouselContent>
                     <CarouselPrevious />
                     <CarouselNext />
-                </Carousel>
+                </Carousel> */}
             </div>
         </div>
     )

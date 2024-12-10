@@ -1,11 +1,9 @@
 
 "use client"
 
-import { IProduct, IProductInput } from "@/shared/types/product.interface";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/Card";
+import { IProduct } from "@/shared/types/product.interface";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/Card";
 import ImagesGallery from "../ui/ImagesGallery/ImagesGallery";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import Image from "next/image";
 import { Button } from "../ui/Button";
 import { formattedPrice } from "@/utils/formattedPrice";
 import { useDispatch } from "react-redux";

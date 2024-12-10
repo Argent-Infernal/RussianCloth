@@ -14,10 +14,20 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<IProduct>) => {
-            state.items.push(action.payload);
+            const existingItem = state.items.find(item => item.id === action.payload.id);
+            if (existingItem) {
+                existingItem.quantity! += 1; // Увеличиваем количество на 1
+            } else {
+                state.items.push({ ...action.payload, quantity: 1 }); // Добавляем новый товар с количеством 1
+            }
         },
         removeFromCart: (state, action: PayloadAction<IProduct>) => {
-            state.items = state.items.filter(item => item.id !== action.payload.id);
+            const existingItem = state.items.find(item => item.id === action.payload.id);
+            if (existingItem && existingItem.quantity! > 1) {
+                existingItem.quantity! -= 1; // Уменьшаем количество на 1, если больше 1
+            } else {
+                state.items = state.items.filter(item => item.id !== action.payload.id); // Удаляем товар, если он последний
+            }
         },
         clearCart: (state) => {
             state.items = [];

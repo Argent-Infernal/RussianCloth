@@ -4,7 +4,10 @@
     margin: 20px auto;
 
     .footer{
-        @apply flex items-center justify-between gap-5;
+        @apply flex flex-col gap-5;
+        >.footerButtons{
+            @apply flex items-center justify-between gap-5; 
+        }
     }
 
     p {
@@ -18,7 +21,6 @@
 
         >.cart {
             @apply flex flex-row justify-between items-center mb-5 gap-5;
-
 
         }
     }

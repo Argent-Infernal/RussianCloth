@@ -4,6 +4,11 @@ export interface IUser {
     picture: string
     role: string
     createdAt: string
+    address: string
+    fullname: string
+    country: string
+    postalCode: string
+    phone: string
 }
 
 export interface IUserRole {

@@ -1,0 +1,35 @@
+.wrapper {
+    @apply mt-10 grid;
+
+    >.centerBlock {
+        @apply flex flex-col items-center justify-center;
+
+        >.card {
+            @apply border-none p-6 min-w-[800px];
+
+            >.content {
+                @apply flex flex-row justify-between space-x-5;
+
+                >.leftBlock{
+                    @apply w-full;
+                    form {
+                        @apply space-y-5;
+    
+                        >.fields {
+                            @apply space-y-5;
+                        }
+    
+                        >.buttonSubmit {
+                            @apply w-full;
+                        }
+                    } 
+                }
+
+                >.rightBlock{
+                    @apply items-start justify-start;
+                }
+            }
+
+        }
+    }
+}

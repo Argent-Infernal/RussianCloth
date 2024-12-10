@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, clearCart } from '@/store/store';
+import { removeFromCart, clearCart, addToCart } from '@/store/store';
 import { RootState } from '@/store/store';
 import { IProduct } from '@/shared/types/product.interface';
 import { formattedPrice } from '@/utils/formattedPrice';
@@ -9,6 +9,8 @@ import { Button } from '../Button';
 import Image from 'next/image';
 import Title from '../Title/Title';
 import { Card, CardContent, CardFooter, CardHeader } from '../Card';
+import { DASHBOARD_URL, PUBLIC_URL } from '@/config/url.config';
+import Link from 'next/link';
 
 const CartComponent: React.FC = () => {
     const dispatch = useDispatch();
@@ -22,10 +24,12 @@ const CartComponent: React.FC = () => {
         dispatch(clearCart());
     };
 
+    const totalPrice = cartItems.reduce((acc, item) => acc + item.price * (item.quantity ? item.quantity : 1), 0);
+
     return (
         <Card className={styles.mainBlock}>
             <CardHeader>
-                <Title title='Корзина'/>
+                <Title title='Корзина' />
             </CardHeader>
             <CardContent className={styles.content}>
                 {cartItems.length === 0 ? (
@@ -42,10 +46,15 @@ const CartComponent: React.FC = () => {
                                     className='rounded'
                                 />
                                 <div className={styles.itemDetails}>
-                                    <span >{item.title}</span>
+                                    <span>{item.title}</span>
                                     <span className='ml-5'>{formattedPrice(item.price)}</span>
+                                    <span className='ml-5'>Количество: {item.quantity}</span>
                                 </div>
-                                <Button variant='destructive'onClick={() => handleRemove(item)}>Удалить</Button>
+                                <div>
+                                    <Button variant='ghost' onClick={() => dispatch(removeFromCart(item))}>-</Button>
+                                    <Button variant='ghost' onClick={() => dispatch(addToCart(item))}>+</Button>
+                                    {/* <Button variant='destructive' onClick={() => handleRemove(item)}>Удалить</Button> */}
+                                </div>
                             </div>
                         ))}
                     </ul>
@@ -53,12 +62,17 @@ const CartComponent: React.FC = () => {
             </CardContent>
 
             <CardFooter className={styles.footer}>
-                <Button variant='outline' onClick={handleClear}>Очистить корзину</Button>
-                <Button>Перейти к оформлению</Button>
+                {cartItems.length > 0 && (
+                    <>
+                        <p>Общая стоимость товаров: {formattedPrice(totalPrice)}</p>
+                            <div className={styles.footerButtons}>
+                            <Button variant='outline' onClick={handleClear}>Очистить корзину</Button>
+                            <Link href={DASHBOARD_URL.order()}><Button>Перейти к оформлению</Button> </Link>
+                        </div>
+                    </>
+                )}
             </CardFooter>
-
         </Card>
-
     );
 };
 

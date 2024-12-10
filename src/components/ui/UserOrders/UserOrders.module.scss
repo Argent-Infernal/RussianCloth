@@ -1,0 +1,13 @@
+.mainBlock {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+
+    .orders {
+        @apply flex flex-col gap-5;
+
+        .cart{
+            @apply flex flex-row justify-between border items-center p-5 rounded;
+        }
+    }
+}

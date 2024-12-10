@@ -1,0 +1,18 @@
+.mainBlock {
+    @apply flex flex-col gap-5;
+    ul {
+        list-style: none;
+        padding: 0;
+
+        >.cart {
+            @apply flex flex-row gap-5 justify-start items-center mb-5; 
+
+            >.itemDetails{
+                @apply flex flex-col justify-around items-start;
+                >span {
+                    @apply p-0 m-0;
+                }
+            }
+        }
+    }
+}

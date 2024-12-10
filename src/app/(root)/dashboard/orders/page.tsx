@@ -1,12 +1,12 @@
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 import type {Metadata} from 'next'
-import { Dashboard } from './Dashboard'
+import { Orders } from './Orders'
 
 export const metadata: Metadata = {
-    title: 'Корзина',
+    title: 'Список заказов',
     ...NO_INDEX_PAGE
 }
 
-export default function DashboardPage() {
-    return <Dashboard/>
+export default function OrderPage() {
+    return <Orders/>
 }

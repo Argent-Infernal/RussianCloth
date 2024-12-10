@@ -6,7 +6,7 @@ import ButtonSelect from '../ui/ButtonSelect';
 import { useState } from "react";
 import { useUpdateRoleUser } from "@/hooks/queries/users/useUpdateRoleUser";
 import { Loader } from "../ui/Loader";
-import { IUser, IUserRole } from "@/shared/types/user.interface";
+import { IUserRole } from "@/shared/types/user.interface";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/Card";
 
 const selectTableValues = [

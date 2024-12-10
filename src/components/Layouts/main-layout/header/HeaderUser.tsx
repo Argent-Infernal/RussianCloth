@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/Button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { ADMIN_URL, DASHBOARD_URL, PUBLIC_URL } from "@/config/url.config"
-import { useProfile } from "@/hooks/useProfile"
+import { useProfile } from "@/hooks/queries/users/useProfile"
 import { authService } from "@/services/auth/auth.service"
 import { useMutation } from "@tanstack/react-query"
 import { Loader, LoaderCircle, LogOut } from "lucide-react"
@@ -57,11 +57,11 @@ export default function HeaderUser({className}: HeaderUserProps) {
                                         </DropdownMenuItem>
 
                                         <DropdownMenuItem asChild>
-                                            <Link href={PUBLIC_URL.cart()}>Корзина</Link>
+                                            <Link href={DASHBOARD_URL.cart()}>Корзина</Link>
                                         </DropdownMenuItem>
 
                                         <DropdownMenuItem asChild>
-                                            <Link href={DASHBOARD_URL.home()}>Заказы</Link>
+                                            <Link href={DASHBOARD_URL.orders()}>Заказы</Link>
                                         </DropdownMenuItem>
 
                                         {user.role === 'admin' && (

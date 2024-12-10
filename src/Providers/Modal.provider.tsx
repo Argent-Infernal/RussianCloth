@@ -1,8 +1,10 @@
 "use client"
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import styles from './Modal.module.scss'
 import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 interface ModalContextProps {
     showModal: (content: ReactNode) => void
@@ -33,15 +35,20 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         setModalContent(null);
     };
 
+    useEffect(() => {
+        hideModal();
+    }, []);
+
+
     return (
         <ModalContext.Provider value={{ showModal, hideModal }}>
             {children}
             <Modal 
                 isOpen={isVisible}
                 onRequestClose={hideModal}
-                ariaHideApp={false} // Если вы хотите отключить скрытие основного контента
-                className={styles.modalContent} // Используйте ваши стили
-                overlayClassName={styles.modalOverlay} // Используйте ваши стили
+                className={styles.modalContent}
+                overlayClassName={styles.modalOverlay}
+                ariaHideApp={false}
             >
                 <div>
                     {modalContent}
@@ -49,4 +56,9 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
             </Modal>
         </ModalContext.Provider>
     );
+};
+
+export const useCloseModal = () => {
+    const { hideModal } = useModal();
+    return hideModal;
 };

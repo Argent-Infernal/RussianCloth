@@ -4,7 +4,8 @@ export interface IProduct {
     description: string,
     price: number,
     createdAt: string,
-    images: string[]
+    images: string[],
+    quantity?: number
 }
 
 export interface IProductInput extends Omit<IProduct, 'id' | 'createdAt'> {}
