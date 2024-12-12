@@ -1,4 +1,5 @@
 import type {Metadata} from 'next'
+import Statistic from './Statistic'
 
 export const metadata: Metadata = {
     title: 'Админ панель',
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
 export default function AdminPage() {
     return (
         <div>
-            Админ панель ебать мой хуй
+            <Statistic/>
         </div>
     )
 }

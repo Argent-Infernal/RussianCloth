@@ -90,10 +90,10 @@ export enum EnumOrderStatus {
 }
 
 export const enumsStatus = {
-    PENDING: EnumOrderStatus.PENDING,
-    PAYED: EnumOrderStatus.PAYED,
-    SENT: EnumOrderStatus.SENT,
-    CANCELLED: EnumOrderStatus.CANCELLED,
-    ACCEPTED: EnumOrderStatus.ACCEPTED,
-    DONE: EnumOrderStatus.DONE
-} as const
+    'PENDING': 'Ожидание оплаты',
+    'PAYED': 'Оплачено',
+    'SENT': 'Отправлено',
+    'CANCELLED': 'Отменено',
+    'ACCEPTED': 'Принято в обработку',
+    'DONE': 'Выполнено'
+}

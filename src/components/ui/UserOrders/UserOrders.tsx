@@ -9,13 +9,14 @@ import { Button } from '../Button';
 import { EnumOrderStatus, enumsStatus } from '@/shared/types/order.interface';
 import { useModal } from '@/Providers/Modal.provider';
 import OrderDetailsModal from '@/components/modals/OrderDetails.modal';
+import { formattedStatus } from '@/utils/formattedStatus';
 
 export function UserOrders() {
 
     const {orders, isLoading} = useGetOrders()
 
     const { showModal } = useModal();
-
+    
     return (
         <div>
             <Card className={styles.mainBlock}>
@@ -31,7 +32,7 @@ export function UserOrders() {
                             <div className={styles.cart} key={order.id}>
                                 <span>{new Date(order.createdAt).toDateString()}</span>
                                 <span className='ml-5'>{formattedPrice(order.total)}</span>
-                                <span className='ml-5'>{order.status}</span>
+                                <span className='ml-5'>{order.status !== undefined ? formattedStatus(order.status) : 'Статус не указан'}</span>
                                 <Button variant='outline' onClick={
                                     () => {
                                         showModal(

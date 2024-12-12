@@ -6,6 +6,7 @@ import styles from '../Admin.module.scss'
 import DataTableLoading from "@/components/data-loading/DataTableLoading"
 import Heading from "@/components/ui/Heading/Heading"
 import { useGetOrders } from "@/hooks/queries/orders/useGetOrders"
+import { formattedStatus } from "@/utils/formattedStatus"
 
 export default function Orders() {
 
@@ -13,8 +14,9 @@ export default function Orders() {
 
     const formattedOrders: IOrderColumn[] = orders ? orders.map(order=>({
         id: order.id,
-        createdAt: order.createdAt,
+        createdAt: new Date(order.createdAt).toDateString(),
         status: order.status,
+        statusText: order.status !== undefined ? formattedStatus(order.status) : 'Статус не указан',
         items: order.items,
         total: order.total,
         fullname: order.fullname,

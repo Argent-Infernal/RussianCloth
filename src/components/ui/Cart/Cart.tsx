@@ -41,14 +41,14 @@ const CartComponent: React.FC = () => {
                                 <Image
                                     src={item.images[0]}
                                     alt={item.title}
-                                    width={70}
-                                    height={70}
+                                    width={60}
+                                    height={60}
                                     className='rounded'
                                 />
                                 <div className={styles.itemDetails}>
                                     <span>{item.title}</span>
                                     <span className='ml-5'>{formattedPrice(item.price)}</span>
-                                    <span className='ml-5'>Количество: {item.quantity}</span>
+                                    <span className='ml-5'>Кол-во: {item.quantity}</span>
                                 </div>
                                 <div>
                                     <Button variant='ghost' onClick={() => dispatch(removeFromCart(item))}>-</Button>

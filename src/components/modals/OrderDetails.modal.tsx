@@ -10,6 +10,7 @@ import { formattedPrice } from "@/utils/formattedPrice";
 import { ItemsList } from "../ui/ItemList/ItemList";
 import { IOrder, IOrderItemWithProduct } from "@/shared/types/order.interface";
 import { useGetProducts } from "@/hooks/queries/products/useGetProducts";
+import { formattedStatus } from "@/utils/formattedStatus";
 
 interface OrderDetailsModalProps {
     orderColumn: IOrderColumn | IOrder
@@ -61,7 +62,7 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({orderColumn}) => {
                             </div>
 
                             <div className="flex flex-col w-full gap-5">
-                                <Label>Статус: {order.status}</Label>
+                                <Label>Статус: {order.status !== undefined ? formattedStatus(order.status) : 'Статус не указан'}</Label>
                                 <Label>Цена заказа: {formattedPrice(order.total)}</Label>
                                 <Label>Дата создания: {new Date(order.createdAt).toDateString()}</Label>
 

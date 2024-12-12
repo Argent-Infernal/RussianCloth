@@ -1,3 +1,5 @@
+'use client'
+
 import CartComponent from "@/components/ui/Cart/Cart"
 
 export function Cart() {

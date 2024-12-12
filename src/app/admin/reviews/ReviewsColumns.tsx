@@ -1,44 +1,44 @@
 'use client'
 
-import OrderDetailsModal from "@/components/modals/OrderDetails.modal"
-import OrderStatusModal from "@/components/modals/OrderStatus.modal"
+import CardReviewModal from "@/components/modals/CardReview"
+import ProductFormModal from "@/components/modals/ProductForm.modal"
 import { Button } from "@/components/ui/Button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { useDeleteReview } from "@/hooks/queries/reviews/useDeleteReview"
 import { useModal } from "@/Providers/Modal.provider"
-import { EnumOrderStatus, IOrderItem } from "@/shared/types/order.interface"
+import { IUser } from "@/shared/types/user.interface"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, ExternalLink, MoreHorizontal } from "lucide-react"
 
-export interface IOrderColumn {
-    id: string
-    createdAt: string
-    status?: EnumOrderStatus
-    statusText: string
-    total: number
-    items: IOrderItem[]
-    fullname:string
+export interface IReviewColumn {
+    id: string,
+    createdAt: string,
+    text: string,
+    rating: number,
+    user: IUser,
+    email: string
 }
 
-export const ordersColumns: ColumnDef<IOrderColumn>[] = [
+export const reviewsColumns: ColumnDef<IReviewColumn>[] = [
     {
-        accessorKey: 'fullname',
+        accessorKey: 'email',
         header: ({column}) => {
             return (
                 <Button variant='ghost' onClick={()=> column.toggleSorting(column.getIsSorted() === 'asc')}> 
                 
-                    ФИО
+                    Email
                     <ArrowUpDown className="ml-2 size-4" ></ArrowUpDown>
                 </Button>
             )
         }
     },
     {
-        accessorKey: 'total',
+        accessorKey: 'rating',
         header: ({column}) => {
             return (
                 <Button variant='ghost' onClick={()=> column.toggleSorting(column.getIsSorted() === 'asc')}> 
                 
-                    Цена 
+                    Оценка 
                     <ArrowUpDown className="ml-2 size-4" ></ArrowUpDown>
                 </Button>
             )
@@ -50,19 +50,7 @@ export const ordersColumns: ColumnDef<IOrderColumn>[] = [
             return (
                 <Button variant='ghost' onClick={()=> column.toggleSorting(column.getIsSorted() === 'asc')}> 
                 
-                    Дата создания 
-                    <ArrowUpDown className="ml-2 size-4" ></ArrowUpDown>
-                </Button>
-            )
-        }
-    },
-    {
-        accessorKey: 'statusText',
-        header: ({column}) => {
-            return (
-                <Button variant='ghost' onClick={()=> column.toggleSorting(column.getIsSorted() === 'asc')}> 
-                
-                    Статус 
+                    createdAt 
                     <ArrowUpDown className="ml-2 size-4" ></ArrowUpDown>
                 </Button>
             )
@@ -75,21 +63,19 @@ export const ordersColumns: ColumnDef<IOrderColumn>[] = [
 
             const { showModal } = useModal();
 
-            const openOrderDetailsModal = () => {
+            const {deleteReview, isLoadingDelete} = useDeleteReview()
+
+            const openDetailsReviewModal = () => {
                 showModal(
-                    <OrderDetailsModal
-                        orderColumn={row.original}
+                    <CardReviewModal
+                        review={row.original}
                     />
                 );
             };
 
-            const openOrderStatusModal = () => {
-                showModal(
-                    <OrderStatusModal
-                        orderId={row.original.id}
-                    />
-                );
-            };
+            const handleDeleteReview = () => {
+                deleteReview(row.original.id)
+            }
 
             return (
                 <DropdownMenu>
@@ -101,13 +87,14 @@ export const ordersColumns: ColumnDef<IOrderColumn>[] = [
 
                     <DropdownMenuContent>
                         <DropdownMenuLabel>Действия</DropdownMenuLabel>
-                        <DropdownMenuItem onClick={openOrderDetailsModal}>
+                        <DropdownMenuItem onClick={openDetailsReviewModal}>
                             <ExternalLink className="size-4 mr-2"/>
-                            Детали заказа
+                            Посмотреть карточку отзыва
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={openOrderStatusModal}>
+
+                        <DropdownMenuItem disabled={isLoadingDelete} onClick={handleDeleteReview}>
                             <ExternalLink className="size-4 mr-2"/>
-                            Изменить статус
+                            Удалить
                         </DropdownMenuItem>
                     </DropdownMenuContent>
 

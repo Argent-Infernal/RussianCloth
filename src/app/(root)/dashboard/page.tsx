@@ -3,7 +3,7 @@ import type {Metadata} from 'next'
 import { Dashboard } from './Dashboard'
 
 export const metadata: Metadata = {
-    title: 'Корзина',
+    title: 'Личный кабинет',
     ...NO_INDEX_PAGE
 }
 

@@ -28,10 +28,10 @@ const items = [
         icon: Store,
     },
     {
-        title: "Настройки",
-        url: ADMIN_URL.settings(),
+        title: "Отзывы",
+        url: ADMIN_URL.reviews(),
         icon: Settings,
-    },
+    }
 ]
 
 export default function AdminSideBar() {
